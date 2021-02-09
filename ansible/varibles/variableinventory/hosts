@@ -1,0 +1,3 @@
+[webserver]
+172.31.42.91 package_name=apache2 php_packages= '["php", "libapache2-mod-php", "php-mysql", "php-cli"]'
+172.31.13.20 package_name=httpd php_packages= '["php", "php-mysql", "php-fpm"]'

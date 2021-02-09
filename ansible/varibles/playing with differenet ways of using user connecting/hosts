@@ -1,0 +1,2 @@
+localhost
+172.31.42.91 ansible_user=<uname> ansible_ssh_password=<password>

@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: deploy-test
+spec: 
+  replicas : 3  
+  selector:
+     matchLabels:
+       app : jenkins
+       version: 1.0     
+  strategy: 
+    rollingUpdate: 
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+     metadata:
+       labels:
+         app: jenkins
+         version: 1.0 
+     spec:
+       containers:
+         - name : jenkin-rs
+           image:  jenkins:2.60.3
+           ports:
+             - containerPort : 8080
+               protocol: TCP

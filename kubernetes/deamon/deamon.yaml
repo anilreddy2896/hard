@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+   name: d-test
+spec:
+   selector:
+     matchLabels:
+       app : jenkins     
+   template:
+     metadata:
+       labels:
+         app: jenkins 
+     spec:
+       containers:
+         - name : jenkin-rs
+           image:  jenkins:2.60.3
+           ports:
+             - containerPort : 8080
+               protocol: TCP

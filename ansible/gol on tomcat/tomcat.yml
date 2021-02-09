@@ -1,0 +1,19 @@
+---
+- name: install tomcat
+  become: yes
+  hosts: all
+  tasks:
+    - name: install java
+      apt:
+        name: openjdk-8-jdk
+        update_cache: yes
+        state: present
+    - name: installing tomcat
+      apt:
+        name: tomcat8
+        update_cache: yes
+        state: present
+    - name: deploying gol
+      get_url:
+        url: https://referenceappkhaja.s3-us-west-2.amazonaws.com/gameoflife.war
+        dest: /var/lib/tomcat8/webapps/gameoflife.war

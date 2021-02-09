@@ -1,0 +1,13 @@
+---
+apiVersion : v1
+kind       : Pod
+metadata : 
+    name : gol-pod
+spec:
+   containers:
+      - name : game-of-life
+        image: anilreddy273/crazymind:21012020
+        ports:
+          - containerPort : 8080
+            name: golport
+            protocol: TCP

@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+   name: jenkins-stateful
+spec:
+   replicas : 2
+   serviceName: jenkins-svc
+   selector:
+     matchLabels:
+       app : jenkins     
+   template:
+     metadata:
+       labels:
+         app: jenkins 
+     spec:
+       containers:
+         - name : jenkin-rs
+           image:  jenkins:2.60.3
+           ports:
+             - containerPort : 8080
+               protocol: TCP

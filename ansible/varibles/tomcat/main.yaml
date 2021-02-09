@@ -1,0 +1,46 @@
+---  
+- name: installing the tomcat
+  become: yes
+  hosts: webserver
+  vars:
+    java_package: "openjdk-8-jdk"
+    username: "tomcat"
+    path: "/opt/tomcat"
+    tomcat_url: "https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.zip "
+
+  tasks:
+    - name: installing java
+      apt: 
+        name: "{{ java_package }}"
+        state: present 
+        update_cache: yes
+      when: ansible_facts ['distribution'] == "Ubuntu"
+
+    - name: adding group 
+      group:
+        name: "{{ tomcat }}"
+        state: present 
+
+    - name :  adding the user 
+      user: 
+        name: "{{ tomcat }}"
+        home: "{{ path }}"
+        state: present
+        shell: /bin/false
+        group: "{{ tomcat }}"
+
+      when: ansible_facts ['distribution'] == "Ubuntu"
+    - name: make sure unzip is available 
+      package:
+         name: unzip 
+         state: present
+    - name: download the tomcat
+      get_url:
+        url: "{{ tomcat_url }}"    
+        dest: "/tmp/apache-tomcat-8.5.61.zip"
+      when: ansible_facts ['distribution'] == "Ubuntu"
+    - name: unziping
+      unarchive:
+         src: "/tmp/apache-tomcat-8.5.61.zip" 
+         dest: " /opt/tomcat "
+      when: ansible_facts ['distribution'] == "Ubuntu"

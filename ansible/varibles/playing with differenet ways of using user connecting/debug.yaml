@@ -1,0 +1,11 @@
+--- 
+- hosts: all 
+  become: yes
+  tasks:
+    - name: to get the 
+      debug:
+        var: ansible_host
+
+    - name: to get user names 
+      debug:
+        var: ansible_user

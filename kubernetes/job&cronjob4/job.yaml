@@ -1,0 +1,24 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+ name: Job-test
+spec:
+  slector:
+    matchLabels:
+      app: jenkins
+      version: 1.0
+  template:
+     metadata:
+       labels:
+         app: jenkins
+         version: 1.0
+     spec:
+       restartPolicy: OnFailure
+       containers:
+         - name: jenkins
+           image: jenkins:2.60.3
+           ports:
+             - containerPort: 8080
+               protocol: TCP
+                

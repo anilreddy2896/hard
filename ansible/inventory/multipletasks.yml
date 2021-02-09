@@ -1,0 +1,35 @@
+---
+- name: installing common utils
+  become: yes
+  hosts: all
+  tasks:
+     - name: installing common utils
+       package:
+           name: "{{ item }}"
+           state: present
+       loop:
+           - git
+           - tree
+           - nano
+- name: installing apache on centos
+  become: yes
+  hosts: centos
+  tasks:
+     - name: installing apache
+       package:
+           name: httpd
+           state: present
+     - name: starting the service
+       service:
+           name: httpd
+           state: started
+           enabled: yes
+- name: installing java on ubuntu
+  become: yes
+  hosts: app
+  tasks:
+     - name: installing java on ubuntu
+       package:
+           name: openjdk-8-jdk
+           state: present
+           update_cache: yes
