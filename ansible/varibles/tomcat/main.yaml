@@ -46,10 +46,34 @@
       when: ansible_facts ['distribution'] == "Ubuntu"
       notify:
         - create symbolic link
-    - name: chaning the ownership recursive 
+    - name: chaning the ownership recursive
       file:
         path: /opt/tomcat
         owner: tomcat
+    - name: giving execute permission
+      file:
+        path: "{{ item }}"
+        mode: "+x"
+      loop:
+        - /opt/tomcat/latest/bin/catalina.sh
+        - /opt/tomcat/latest/bin/ciphers.sh
+        - /opt/tomcat/latest/bin/configtest.sh
+        - /opt/tomcat/latest/bin/daemon.sh
+        - /opt/tomcat/latest/bin/digest.sh
+        - /opt/tomcat/latest/bin/setclasspath.sh
+        - /opt/tomcat/latest/bin/shutdown.sh
+        - /opt/tomcat/latest/bin/startup.sh
+        - /opt/tomcat/latest/bin/tool-wrapper.sh
+        - /opt/tomcat/latest/bin/version.sh
+    - name: copying file
+      copy: tomcat.service
+      dest: /etc/systemd/system/tomcat.service
+    - name: starting daemon
+      systemd:
+        name: tomcat
+        daemon_reload: yes
+        state: started
+
   handlers:
     - name: create symbolic link
       file:
