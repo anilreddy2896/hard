@@ -4,7 +4,7 @@ node ('HRMS'){
         git "https://github.com/wakaleo/game-of-life.git"
     }
     stage ("build"){
-        //this is the build step
+        //this is the build step1 of done
         sh 'mvn clean package'
     }
     stage('publish result'){
