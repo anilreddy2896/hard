@@ -33,6 +33,9 @@ pipeline{
 
                  //test results
                 junit " ${params.Testresultpath}"
+                
+                // to sleep
+                sleep time: 20
 
                  //artifacts
                  archiveArtifacts artifacts: "${params.Artifactstobebuild}",followSymlinks: false
