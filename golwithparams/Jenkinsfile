@@ -1,5 +1,5 @@
 pipeline{
-    agent{ label "HRMS" && "QA" }
+    agent{ label "HRMS && QA" }
     triggers { pollSCM('* * * * *') }
     parameters{
         string( name:'Testresultpath',
@@ -19,8 +19,8 @@ pipeline{
     stages{
         stage("git"){
             steps{
-                echo ${params.Branchtobebuild}
-                git branchname: ${params.Branchtobebuild}, url: "https://github.com/wakaleo/game-of-life.git"
+                echo "${params.Branchtobebuild}"
+                git branch:" ${params.Branchtobebuild}", url:"https://github.com/wakaleo/game-of-life.git"
             }
         }
         stage("build"){
@@ -29,11 +29,15 @@ pipeline{
             }
         }
         stage('postbuild'){
-            //test results
-            junit  ${params.Testresultpath}
+            steps{
 
-            //artifacts
-            archiveArtifacts artifacts: "${params.Artifactstobebuild}",followSymlinks: false
+                 //test results
+                junit " ${params.Testresultpath}"
+
+                 //artifacts
+                 archiveArtifacts artifacts: "${params.Artifactstobebuild}",followSymlinks: false
+            }
+           
         }
     }
   
