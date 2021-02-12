@@ -2,8 +2,10 @@ pipeline {
     agent { label 'HRMS&&QA' }
     triggers{ pollSCM( '* * * * *' ) }
     stages{
-        stage{
-            input message:"Do you want to start"
+        stage("input of user"){
+            steps{
+                input message: "do you want to continue?"
+            }
         }
         stage("git"){
             steps{
@@ -13,7 +15,6 @@ pipeline {
         stage("build"){
             steps{
                 sh 'mvn clean package'
-                input message: ready to go? 
             }
         }
        
