@@ -2,6 +2,9 @@ pipeline {
     agent { label 'HRMS&&QA' }
     triggers{ pollSCM( '* * * * *' ) }
     stages{
+        stage{
+            input message:"Do you want to start"
+        }
         stage("git"){
             steps{
                 git "https://github.com/wakaleo/game-of-life.git"
@@ -10,8 +13,10 @@ pipeline {
         stage("build"){
             steps{
                 sh 'mvn clean package'
+                input message: ready to go? 
             }
-        }   
+        }
+       
     }
     
 }
