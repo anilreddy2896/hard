@@ -1,0 +1,47 @@
+pipeline{
+    agent{ label "HRMS && QA" }
+    triggers { pollSCM('* * * * *') }
+    parameters{
+        string( name:'Testresultpath',
+        defaultValue:"gameoflife-web/target/surefire-reports/*.xml",
+        description: "test results path")
+        string(
+            name:"Artifactstobebuild",
+            defaultValue:"gameoflife-web/target/*.war",
+            description: "where the artifacts are stored"
+        )
+        choice(
+            name:"Branchtobebuild",
+            choices: ["main","dsljenkins","Scriptedjenkins"],
+            description:" select the branch to be build"
+        )
+    }
+    stages{
+        stage("git"){
+            steps{
+                echo "${params.Branchtobebuild}"
+                git branch:" ${params.Branchtobebuild}", url:"https://github.com/wakaleo/game-of-life.git"
+            }
+        }
+        stage("build"){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage('postbuild'){
+            steps{
+
+                 //test results
+                junit " ${params.Testresultpath}"
+                
+                // to sleep
+                sleep time: 20
+
+                 //artifacts
+                 archiveArtifacts artifacts: "${params.Artifactstobebuild}",followSymlinks: false
+            }
+           
+        }
+    }
+  
+}
