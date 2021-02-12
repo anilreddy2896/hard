@@ -1,5 +1,8 @@
 node ('HRMS'){
     properties([pipelineTriggers([pollSCM('* * * * *')])])
+    stage("user input"){
+        input message: "Do you want to continue"
+    }
     stage ("SCM"){
         git "https://github.com/wakaleo/game-of-life.git"
     }
