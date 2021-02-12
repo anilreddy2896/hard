@@ -1,5 +1,5 @@
-node ('HRMS' && 'DEV'){
-    properties([pipelineTriggers([corn('* * * * *')])])
+node ('HRMS'){
+    properties([pipelineTriggers([cron('* * * * *')])])
     stage ("SCM"){
         git "https://github.com/wakaleo/game-of-life.git"
     }
