@@ -1,0 +1,7 @@
+---
+- name: first task
+  debug:
+    msg: "this is from 1 st task"
+- name: second task
+  debug:
+    msg: "this from second tasks"

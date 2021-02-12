@@ -1,0 +1,20 @@
+--- 
+java_package: "openjdk-8-jdk"
+username: "tomcat"
+path: "/opt/tomcat"
+tomcat_url: "https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.zip "
+java_path: "/usr/lib/jvm/java-1.8.0-openjdk-amd64"
+tomcat_path: "/opt/tomcat/latest"
+tomcat_dest: "/tmp/apache-tomcat-8.5.61.zip"
+tomcat_excutables:
+   - /opt/tomcat/latest/bin/catalina.sh
+   - /opt/tomcat/latest/bin/ciphers.sh
+   - /opt/tomcat/latest/bin/configtest.sh
+   - /opt/tomcat/latest/bin/daemon.sh
+   - /opt/tomcat/latest/bin/digest.sh
+   - /opt/tomcat/latest/bin/setclasspath.sh
+   - /opt/tomcat/latest/bin/shutdown.sh
+   - /opt/tomcat/latest/bin/startup.sh
+   - /opt/tomcat/latest/bin/tool-wrapper.sh
+   - /opt/tomcat/latest/bin/version.sh
+  

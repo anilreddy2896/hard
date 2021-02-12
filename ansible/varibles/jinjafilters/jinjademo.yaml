@@ -1,0 +1,14 @@
+---
+- name: jinja demo filters
+  hosts: all 
+  become: yes
+  vars:
+    course: "ANSIBLE"
+    sample_text: "hello how are you"
+  tasks:
+    - name: using the filter and converting to lower
+      debug:
+        msg: "course_name={{ course | lower }}"
+    - name: replace filter
+      debug:
+        msg: "{{ sample_text | replace ('you' , 'we' ) }}" 
