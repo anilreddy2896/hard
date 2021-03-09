@@ -34,4 +34,5 @@ Nested Functions
 
 Decorators 
  - decorator chaining
-Generators
+Generators:
+   yield keyword is used in the generators to return the values
