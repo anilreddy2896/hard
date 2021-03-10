@@ -26,3 +26,11 @@ reload(modulename)
 
 
 # random module
+this module is to genrerate random number
+1. random():  to generate random value in betweeen 0 and 1 not inclusive
+2. randint(): 
+       randint(1,13) inclusive
+3. uniform():
+       to generate random float values in between  uniform(1,10) but not inclusive 
+4. choice:
+     to select the random object from the given indexable object
