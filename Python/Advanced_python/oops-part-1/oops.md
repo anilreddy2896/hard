@@ -29,6 +29,6 @@ class contains both variables and methods
 
 
 Types of variables
-* instance variab,es
-* static level
-* method level variables
+* instance variab(object level)
+* static variables(class level)
+*local variable (method  variables )
